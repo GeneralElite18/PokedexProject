@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
+body{
+  background-image: url(./Images/Poké_Ball.png);
+  background-attachment: fixed;
+  background-size: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgb(180, 179, 179);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav{
+  background-color: #c54141;
+  padding: 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul{
+  margin: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 80px;
   color: white;
+  list-style: none;
 }
 
-.App-link {
-  color: #61dafb;
+.navLink{
+  color: white;
+  text-decoration: none;
+  font-size: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navLink:hover{
+  color: rgb(141, 141, 141);
 }
