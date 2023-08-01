@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { getTypes, filterByType, filterByWeakness } from "../Filters/filters";
 import "./pokedexPage.css"
 
 function PokedexPage() {
 
     const [data, setData] = useState([]);
+    const [type, setType] = useState("");
+    const [weakness, setWeakness] = useState("");
 
     function getPokedex(){
         const pokeAPI = "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json"
@@ -28,10 +31,10 @@ function PokedexPage() {
 
 
     function mapPokemon(){
-        let newList = data.map((item, index) => {
+        let newList = filteredByWeaknessList.map((item, index) => {
             let newLi = <li key={index} className="pokemonHolder">
                 <div>
-                    <h3>{item.name} #{item.id}</h3>
+                    <h2>{item.name} #{item.id}</h2>
                     <p>Type: {item.type.toString()}</p>
                     <p>Weaknesses: {item.weaknesses.toString()}</p>
                 </div>
@@ -45,10 +48,41 @@ function PokedexPage() {
         return newList;
     }
 
+    const types = getTypes(data, "type");
+    const filteredByTypesList = filterByType(data, type);
+    const filteredByWeaknessList = filterByWeakness(filteredByTypesList, weakness);
 
     return(
         <div>
-            <h1>Pokedexdge</h1>
+            <h1>Pokedex</h1>
+            <div className="FilterSection">
+                <h2>Sort By</h2>
+                <div className="filter">
+                    <label htmlFor="typeFilter">Type:</label>
+                    <select id="typeFilter" 
+                    value={type}
+                    onChange={((element) => setType(element.target.value))}
+                    >
+                        <option value="">All</option>
+                        {types.map((type) => {
+                            return <option value={type}>{type}</option>
+                        })}
+                    </select>
+                </div>
+                <div className="filter">
+                    <label htmlFor="weaknessFilter">Weakness:</label>
+                    <select id="weaknessFilter" 
+                    value={weakness}
+                    onChange={((element) => setWeakness(element.target.value))}
+                    >
+                        <option value="">All</option>
+                        {types.map((type) => {
+                            return <option value={type}>{type}</option>
+                        })}
+                    </select>
+                </div>
+
+            </div>
             <ul id="pokemonList">
             {mapPokemon()}
             </ul>
