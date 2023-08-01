@@ -5,6 +5,7 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   background-color: rgb(180, 179, 179);
+  padding: 0;
 }
 
 nav{
